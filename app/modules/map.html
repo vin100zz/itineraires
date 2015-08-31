@@ -1,6 +1,6 @@
 ﻿
 <div id="map" class="map">
-  <div id="popup"></div>
+  <div id="tooltip"></div>
 </div>
 
 <ul class="options">
@@ -10,24 +10,20 @@
   
   <li id="info">
     <ul>
-      <li ng-class="{inactive: !info.trajets.show}" ng-click="toggleInfo('trajets')">Trajets</li>
-      <li ng-class="{inactive: !info.cityMarkers.show}" ng-click="toggleInfo('cityMarkers')">Villes</li>
-      <li ng-class="{inactive: !info.cityNames.show}" ng-click="toggleInfo('cityNames')">Noms des villes</li>
+      <li ng-repeat="mask in masks"  ng-class="{inactive: !mask.show}" ng-click="toggleMask($index)">{{mask.name}}</li>
     </ul>
   </li>
 
   <li id="map-type">
     <ul>
-      <li ng-class="{inactive: !mapType.visited.show}" ng-click="setMapType('visited')">Pays visités</li>
-      <li ng-class="{inactive: !mapType.satellite.show}" ng-click="setMapType('satellite')">Vue satellite</li>
-      <li ng-class="{inactive: !mapType.administrative.show}" ng-click="setMapType('administrative')">Vue administrative</li>
+      <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)">{{map.name}}</li>
     </ul>
   </li>
   
   <li id="voyages">
     <ul>
       <li ng-repeat="voyage in voyages">
-        <span>{{mois[voyage.mois-1]}} {{voyage.annee}}</span>
+        <span>{{Month.getLabel(voyage.mois)}} {{voyage.annee}}</span>
         <span>{{voyage.nom}}</span>
       </li>
     </ul>

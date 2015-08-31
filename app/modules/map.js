@@ -3,20 +3,66 @@
   'use strict';
   
   // controller
-  app.controller('MapCtrl', function($scope, Voyages, Coordonnees) {
-  
-    $scope.mois = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+  app.controller('MapCtrl', function($scope, Voyages, Coordonnees, Month, BackgroundMaps, JourneysLayer, CitiesLayer) {
+    $scope.Month = Month;    
   
     // map
-    var map = null;
-    drawMap();
+    var map = new ol.Map({
+      target: 'map',
+      layers: [],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([5.38107, 43.29695]),
+        zoom: 3
+      })
+    });
+       
+    // data
+    $scope.voyages = Voyages.get();
+
+    // background
+    $scope.backgroundMaps = BackgroundMaps.get($scope.voyages);
+    $scope.backgroundIndex = 0;
+
+    map.addLayer($scope.backgroundMaps[0].layer);
+    
+    $scope.setBackgroundMap = function (index) {
+      map.removeLayer($scope.backgroundMaps[$scope.backgroundIndex].layer);
+      $scope.backgroundIndex = index;
+      map.getLayers().insertAt(0, $scope.backgroundMaps[index].layer);
+    };
+    
+    // masks
+    $scope.masks = [
+      {name: 'Trajets', show: true, layer: JourneysLayer.get()},
+      {name: 'Villes', show: true, layer: CitiesLayer.get()}
+    ];
+    
+    $scope.masks.forEach(function (mask) {
+      if (mask.show) {
+        map.addLayer(mask.layer);
+      }
+    });
+        
+    $scope.toggleMask = function (index) {
+      var mask = $scope.masks[index];
+      mask.show = !mask.show;
+      if (mask.show) {
+        map.getLayers().insertAt(index+1, mask.layer); // +1 for background
+      } else {
+        map.removeLayer(mask.layer);
+      }      
+    };
+
     
     // info
     $scope.info = {
       trajets: {show: true, type: 'layer', list: []},
-      cityMarkers: {show: true, type: 'overlay', list: []},
+      cityMarkers: {show: true, type: 'layer', list: []},
       cityNames: {show: false, type: 'overlay', list: []},
     };
+    
+    /*computeInfo();
+    initInfo();*/
     
     $scope.toggleInfo = function (layer) {
       $scope.info[layer].show = !$scope.info[layer].show;
@@ -26,113 +72,10 @@
       });
     };
     
-    // map type
-    function initMapType() {
-    
-      var countriesSource = new ol.source.Vector({
-        url: 'data/countries.geojson',
-        format: new ol.format.GeoJSON()
-      });
-      
-      var initialized = false;
-      
-      var key = countriesSource.on('change', function (event) {
-        if (!initialized && event.target.getState() === 'ready') {
-          initialized = true; // avoid infinite loops
-          
-          var visitedCountries = [];
-          $scope.voyages.forEach(function (voyage) {
-            voyage.pays.forEach(function (pays) {
-              if (visitedCountries.indexOf(pays) === -1) {
-                visitedCountries.push(pays);
-              }
-            });
-          });
-          
-          countriesSource.forEachFeature(function (feature) {
-            if (visitedCountries.indexOf(feature.get('name')) !== -1) {
-              feature.set('visited', true);
-            }
-          }); 
-        }    
-      });
-      
-      $scope.mapType = {
-        satellite: {
-          show: false,
-          layer: new ol.layer.Tile({
-            source: new ol.source.MapQuest({layer: 'sat'})
-          })
-        },
-        administrative: {
-          show: false,
-          layer: new ol.layer.Tile({
-            source: new ol.source.TileJSON({
-              url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
-              crossOrigin: ''
-            })
-          })
-        },
-        visited : {
-          show: true,
-          layer: new ol.layer.Vector({
-            source: countriesSource,
-            style: function (feature, resolution) {
-              var fillColor = (feature.get('name') === 'France' ? '#ddd' : (feature.get('visited') ? '#fff0bb' : '#f3f3f3'));
-              return [new ol.style.Style({
-                fill: new ol.style.Fill({color: fillColor}),
-                stroke: new ol.style.Stroke({color: '#ccc', width: 1}),
-              })];
-            }
-          })
-        }
-      };      
-    
-      for (var key in $scope.mapType) {
-        if ($scope.mapType.hasOwnProperty(key) && $scope.mapType[key].show) {
-          map.addLayer($scope.mapType[key].layer);
-        }
-      }
-    }
-    
-    $scope.setMapType = function (newType) {
-      for (var key in $scope.mapType) {
-        if ($scope.mapType.hasOwnProperty(key)) {
-          var type = $scope.mapType[key];
-          if ($scope.mapType[key].show) {
-            type.show = false;
-            map.removeLayer(type.layer);
-          }
-          if (key === newType) {
-            type.show = true;
-            map.getLayers().insertAt(0, type.layer);
-          }
-        }
-      }
-    }    
-    
-    // data
-    $scope.voyages = null;
-    var coordonnees = Coordonnees.get(null, function () {
-      Voyages.get(null, function (voyages) {
-        $scope.voyages = voyages.reverse();
-        initMapType();
-        computeInfo();
-        initInfo();
-      });
-    });
+
     
     // map
-    function drawMap () {    
-      map = new ol.Map({
-        target: 'map',
-        layers: [],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([5.38107, 43.29695]),
-          zoom: 3
-        })
-      });
-    }
+
     
     function initInfo() {
       for (var key in $scope.info) {
@@ -168,53 +111,61 @@
     ];
     
     function computeInfo() {
+      var trajets = [];
+      var cities = [];
+      
       $scope.voyages.forEach(function (voyage, index) {
-        var color = colors[index%colors.length];
+        var color = '#f00'; //colors[index%colors.length];
         var points = [];
         
         voyage.villes.forEach(function (ville) {
-          var coordCity = coordonnees[ville];
-          if (!coordCity) {
-            console.error('Coordonnées manquantes pour ' + ville);
-          } else {
-            coordCity = ol.proj.fromLonLat([coordCity.lng, coordCity.lat]);
+          var coordCity = Coordonnees.get(ville);
+          if (coordCity) {
             points.push(coordCity);
             
-            addCity(coordCity, ville, color);
+            //addCity(coordCity, ville, color);
+            cities.push({name: ville, coord: coordCity});
           }
         });
         
-        addTrajet(points, color);
-      });
-    }
-    
-    // trajet   
-    function addTrajet(points, color) {
-      var featureLine = new ol.Feature({
-        geometry: new ol.geom.LineString(points)
-      });
-        
-      var vectorLine = new ol.source.Vector({});
-      vectorLine.addFeature(featureLine);
-      
-      var layer = new ol.layer.Vector({
-        source: vectorLine,
-        style: new ol.style.Style({
-          stroke: new ol.style.Stroke({color: color, width: 5})
-        })
+        //addTrajet(points, color);
+        trajets.push({points: points, color: color});
       });
       
-      $scope.info.trajets.list.push(layer);
+      addCities(cities);
     }
     
     // city
     var alreadyRenderedCities = [];
+    
+    
+    function addCities(cities) {
+      var sourceVector = new ol.source.Vector({});
+      
+      /*cities.forEach(function (city) {
+        var feature = new ol.Feature({
+          geometry: new ol.geom.Circle(city.coord, 50000),
+          cityName: city.name
+        });
+        sourceVector.addFeature(feature);
+      });*/
+      
+      var layer = new ol.layer.Vector({
+        source: sourceVector,
+        style: new ol.style.Style({
+          stroke: new ol.style.Stroke({color: '#f00', width: 5}),
+          fill: new ol.style.Fill({color: '#f00'})
+        })
+      });
+      
+      $scope.info.cityMarkers.list.push(layer);
+    }
      
     function addCity(coord, name, color) {
     
       if (alreadyRenderedCities.indexOf(name) === -1) {
         // marker
-        var markerElement = document.createElement("div");
+        /*var markerElement = document.createElement("div");
         markerElement.classList.add('city-marker');
         markerElement.style.backgroundColor = color;
 
@@ -223,7 +174,7 @@
           positioning: 'center-center',
           element: markerElement
         });
-        $scope.info.cityMarkers.list.push(markerOverlay);
+        $scope.info.cityMarkers.list.push(markerOverlay);*/
 
         // name
         var nameElement = document.createElement("div");
@@ -240,6 +191,39 @@
         alreadyRenderedCities.push(name);
       }
     }
+    
+    var tooltip = $('#tooltip');
+    tooltip.tooltip({
+      animation: false,
+      trigger: 'manual'
+    });
+    
+    function displayFeatureInfo (pixel) {
+      tooltip.css({
+        left: pixel[0] + 'px',
+        top: (pixel[1] - 15) + 'px'
+      });
+      var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+        return feature;
+      });
+      
+      var label = feature ? (feature.get('cityName') || feature.get('journeyName')) : null;
+      
+      if (label) {
+        tooltip.tooltip('hide')
+            .attr('data-original-title', label)
+            .tooltip('fixTitle')
+            .tooltip('show');
+            
+            console.log(tooltip);
+      } else {
+        tooltip.tooltip('hide');
+      }
+    };
+    
+    $(map.getViewport()).on('mousemove', function(evt) {
+      displayFeatureInfo(map.getEventPixel(evt.originalEvent));
+    });
     
   });
   

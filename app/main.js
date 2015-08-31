@@ -3,8 +3,17 @@ var app = angular.module('itineraires', ['ngResource', 'ngRoute', 'ngSanitize', 
 // routing
 app.config(['$routeProvider', function ($routeProvider) {
 
+  var dependencies = {
+    'coordonnees': function (Coordonnees) {
+      return Coordonnees.init;
+    },
+    'voyages': function (Voyages) {
+      return Voyages.init;
+    }
+  };
+
   $routeProvider
-  .when('/', {templateUrl: 'app/modules/map.html', controller: 'MapCtrl'})
+  .when('/', {templateUrl: 'app/modules/map.html', controller: 'MapCtrl', resolve: dependencies})
   .otherwise({redirectTo: '/'});
 }]);
 
