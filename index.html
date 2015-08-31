@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="itineraires">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Itinéraires</title>
+
+  <link rel="stylesheet" href="lib/reset/reset.css">
+  <link rel="stylesheet" href="style/style.css">
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular/angular-locale_fr-fr.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
+  <script src="lib/angular/angular-sanitize.min.js"></script>
+
+  <script src="lib/angular-ui/ui-bootstrap-tpls-0.13.0.min.js"></script>
+  
+  <!-- Open Layers dependencies -->
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+  <script src="lib/open-layers-3.8.2/ol.js"></script>
+  <link rel="stylesheet" href="lib/open-layers-3.8.2/ol.css">
+
+  <script src="app/main.js"></script>
+  <script src="app/utils/coordonnees.js"></script>
+  <script src="app/utils/voyages.js"></script>
+  <script src="app/modules/map.js"></script>
+
+</head>
+
+<body ng-controller="MainCtrl">
+
+  <ng-view id="payload" ng-show="!loading"></ng-view>
+
+</body>
+
+</html>
