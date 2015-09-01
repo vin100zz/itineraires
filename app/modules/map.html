@@ -1,31 +1,35 @@
-﻿
-<div id="map" class="map">
-  <div id="tooltip"></div>
+﻿<div id="map" class="map">
+  <div id="tooltip" data-html="true"></div>
 </div>
 
-<ul class="options">
-  <li id="title">
+<div id="menu">
+  <div class="title">
     Itinéraires
-  </li>
+  </div>
   
-  <li id="info">
+  <div class="menu-item sel-radio background">
+    <div>Fond de carte</div>
+    <ul>
+      <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)"><span>{{map.name}}</span></li>
+    </ul>
+  </div>
+
+  <div class="menu-item sel-check masks">
+    <div>Informations</div>
     <ul>
       <li ng-repeat="mask in masks"  ng-class="{inactive: !mask.show}" ng-click="toggleMask($index)">{{mask.name}}</li>
     </ul>
-  </li>
-
-  <li id="map-type">
-    <ul>
-      <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)">{{map.name}}</li>
-    </ul>
-  </li>
+  </div>
   
-  <li id="voyages">
+  <div class="menu-item sel-radio voyages">
+    <div>Voyages</div>
     <ul>
-      <li ng-repeat="voyage in voyages">
-        <span>{{Month.getLabel(voyage.mois)}} {{voyage.annee}}</span>
-        <span>{{voyage.nom}}</span>
+      <li ng-click="setJourney(-1)">Tous</li>
+      <li ng-repeat="journey in journeys" ng-click="setJourney($index)">
+        <span>{{Month.getLabel(journey.mois)}} {{journey.annee}}</span>
+        <span>{{journey.nom}}</span>
       </li>
     </ul>
-  </li>
-</ul>
+  </div>
+
+</div>

@@ -1,6 +1,6 @@
-app.service('JourneysLayer', function (Voyages, Coordonnees) {
+﻿app.service('JourneysLayer', function (Voyages, Coordonnees) {
 
-  this.get = function () {
+  this.get = function (overlayColor) {
   
     // compute journeys
     var journeys = [];
@@ -30,7 +30,7 @@ app.service('JourneysLayer', function (Voyages, Coordonnees) {
     var layer = new ol.layer.Vector({
       source: source,
       style: new ol.style.Style({
-        stroke: new ol.style.Stroke({color: '#f00', width: 5})
+        stroke: new ol.style.Stroke({color: overlayColor, width: 5})
       })
     });
     

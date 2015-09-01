@@ -1,14 +1,19 @@
-app.service('CitiesLayer', function (Voyages, Coordonnees) {
+﻿app.service('CitiesLayer', function (Voyages, Coordonnees, Month) {
 
-  this.get = function () {
+  this.get = function (overlayColor) {
   
     // compute cities
-    var cities = [];
+    var citiesWithJourneys = [];
     
     Voyages.get().forEach(function (voyage, index) {
       voyage.villes.forEach(function (city) {
-        if (cities.indexOf(city) === -1) {
-          cities.push(city);
+        var cityWithJourneys = citiesWithJourneys.find(function (cityWithJourneys) {
+          return cityWithJourneys.city === city;
+        });
+        if (!cityWithJourneys) {
+          citiesWithJourneys.push({city: city, journeys: [voyage]});
+        } else {
+          cityWithJourneys.journeys.push(voyage);
         }
       });
     });
@@ -16,12 +21,19 @@ app.service('CitiesLayer', function (Voyages, Coordonnees) {
     // compute layer
     var source = new ol.source.Vector({});
     
-    cities.forEach(function (city) {
-      var coordonnees = Coordonnees.get(city);
+    citiesWithJourneys.forEach(function (cityWithJourneys) {
+      var coordonnees = Coordonnees.get(cityWithJourneys.city);
       if (coordonnees) {
+      
+        var tooltipContent = '<h1>' + cityWithJourneys.city + '</h1>';
+        var tooltipJourneys = cityWithJourneys.journeys.map(function (journey) {
+          return Month.getLabel(journey.mois) + ' ' + journey.annee;
+        });
+        tooltipContent += '<ul><li>' + tooltipJourneys.join('</li><li>') + '</li></ul>';
+      
         var feature = new ol.Feature({
           geometry: new ol.geom.Circle(coordonnees, 50000),
-          cityName: city
+          tooltip: tooltipContent
         });
         source.addFeature(feature);
       }
@@ -31,7 +43,7 @@ app.service('CitiesLayer', function (Voyages, Coordonnees) {
       source: source,
       style: new ol.style.Style({
         stroke: new ol.style.Stroke({color: '#000', width: 1}),
-        fill: new ol.style.Fill({color: '#f00'})
+        fill: new ol.style.Fill({color: overlayColor})
       })
     });
     

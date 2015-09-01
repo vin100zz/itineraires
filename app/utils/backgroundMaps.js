@@ -35,10 +35,11 @@
     
     maps.push({
         name: 'Pays visités',
+        overlayColor: '#FF0000',
         layer: new ol.layer.Vector({
           source: countriesSource,
           style: function (feature, resolution) {
-            var fillColor = (feature.get('name') === 'France' ? '#ddd' : (feature.get('visited') ? '#fff0bb' : '#f3f3f3'));
+            var fillColor = (feature.get('name') === 'France' ? '#ddd' : (feature.get('visited') ? '#D4FFC1' : '#f3f3f3'));
             return [new ol.style.Style({
               fill: new ol.style.Fill({color: fillColor}),
               stroke: new ol.style.Stroke({color: '#ccc', width: 1}),
@@ -51,6 +52,7 @@
     // satellite
     maps.push({
       name: 'Satellite',
+      overlayColor: '#FFD800',
       layer: new ol.layer.Tile({
         source: new ol.source.MapQuest({layer: 'sat'})
       })
@@ -59,6 +61,7 @@
     // geopolitical
     maps.push({
       name: 'Géopolitique',
+      overlayColor: '#333',
       layer: new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',

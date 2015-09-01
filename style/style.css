@@ -2,110 +2,20 @@
   font-family: "Always_In_My_Heart";
   src: url('Always_In_My_Heart.ttf');
 }
-
 html {
-  font-family: "Praxis LT", "Linux Biolium", sans-serif;
   font-size: 10pt;
   width: 100%;
   height: 100%;
 }
-
 body {
   width: 100%;
   height: 100%;
-}
-
-/* Options */
-.options {
-  position: absolute;
-  top: 100px;
-  left: 10px;
-}
-.options > li {
-  padding: 10px 20px;
-  background: rgba(60, 60, 60, 0.75);
-  color: #fff;
-  border-radius: 5px;
-  box-shadow: 2px 2px 1px 0px #111;
-  margin-bottom: 25px;
-}
-.options > li > ul > li {
-  cursor: pointer;
-  transition: color 0.5s;
-}
-.options > li > ul > li:hover {
-  color: #FFF0BB;
-}
-.options > li > ul > li:not(:last-child) {
-  margin-bottom: 2px;
-}
-.options > li > ul > li.inactive {
-  color: #999;
-}
-
-#info {
-  top: 100px;
-}
-#map-type {
-  top: 250px;
-}
-
-
-/* Title */
-#title {
-	height: 80px;
-	font-family: "Always_In_My_Heart";
-	font-size: 40pt;
-  padding-left: 5px;
-  padding-right: 45px;
-  color: #fff;
-}
-#title:after {
-  content: url(icon.png);
-  position: absolute;
-  top: -2px;
-  right: 10px;
-}
-
-
-/* Voyages */
-#voyages {
-  height: 300px;
-  overflow-y: auto;
-}
-#voyages > ul > li {
-  cursor: auto;
-}
-#voyages > ul > li > span {
-  display: inline-block;
-  font-size: 9pt;
-}
-#voyages > ul > li > span:first-child {
-  width: 60px;
-  color: #bbb;
-  text-align: right;
-  margin-right: 5px;
 }
 
 /* Map */
 #map {
   width: 100%;
   height: 100%;
-}
-
-.city-marker {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  opacity: 0.8;
-}
-
-.city-name {
-  color: white;
-  font-size: 9pt;
-  font-weight: bold;
-  text-shadow: black 0.1em 0.1em 0.2em;
-  z-index: 10;
 }
 
 /* Tooltip */
@@ -115,5 +25,84 @@ body {
   width: 1px;
   z-index: 100;
 } 
+
+/* Zoom */
+.ol-zoom {
+  position: absolute;
+  left: auto !important;
+  right: 0.5em;
+}
+
+/* Menu */
+#menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(60, 60, 60, 0.9);
+  font-size: 9pt;
+  color: #ccc;
+}
+#menu  > div {
+  padding: 10px 20px;
+}
+
+.menu-item > div {
+  font-weight: bold;
+  color: #cfb497;
+  text-transform: uppercase;
+}
+.menu-item > ul {
+  margin: 2px 0;
+}
+.menu-item > ul > li {
+  cursor: pointer;
+}
+.menu-item > ul > li:hover {
+  color: #fff;
+}
+.menu-item > ul > li.inactive {
+  color: #999;
+}
+.menu-item > ul > li:before {
+  margin-right: 7px;
+}
+.menu-item > ul > li.inactive:before {
+  opacity: 0;
+}
+.menu-item.sel-radio  > ul > li:before {
+  content: '\25A0';
+  vertical-align: text-bottom;
+}
+.menu-item.sel-check  > ul > li:before {
+  content: '\2714';
+  font-size: 0.75em;
+}
+
+/* Title */
+.title {
+  height: 80px;
+  margin-left: -20px;
+  font-family: "Always_In_My_Heart";
+	font-size: 40pt;
+  color: #cfb497;
+}
+.title:after {
+  content: url(icon.png);
+  position: absolute;
+  top: -2px;
+  right: 15px;
+}
+
+/* Background */
+.background > ul > li:before {
+  content: '\25A0';
+}
+
+/* 
+
+
+
+
 
 

@@ -1,6 +1,6 @@
-app.service('Month', function() {
+ï»¿app.service('Month', function() {
 
-  var months = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+  var months = ['janvier', 'fÃ©vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aoÃ»t', 'septembre', 'octobre', 'novembre', 'dÃ©cembre'];
   
   this.getLabel = function (index) {
     return months[index-1];
