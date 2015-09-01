@@ -21,7 +21,7 @@
     $scope.journeys = Voyages.get();
     
     $scope.setJourney = function (index) {
-      $scope.journeyIndex = index === -1 ? -1 : $scope.journeys.length - index - 1;
+      $scope.journeyIndex = index === -1 ? -1 : $scope.journeys.length-index-1;
       refreshLayers();
     };
 

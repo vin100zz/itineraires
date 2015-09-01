@@ -29,7 +29,7 @@
     <div>Voyages</div>
     <ul>
       <li ng-class="{inactive: journeyIndex !== -1}" ng-click="setJourney(-1)">Tous</li>
-      <li ng-repeat="journey in journeys | reverse" ng-class="{inactive: journeyIndex !== $index}" ng-click="setJourney($index)">
+      <li ng-repeat="journey in journeys | reverse" ng-class="{inactive: journeys.length-journeyIndex-1 !== $index}" ng-click="setJourney($index)">
         <span>{{journey.nom}}</span>
         <span class="date">[{{Month.getLabel(journey.mois)}} {{journey.annee}}]</span>
       </li>

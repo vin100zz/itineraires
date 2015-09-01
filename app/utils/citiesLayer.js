@@ -12,7 +12,7 @@
         });
         if (!cityWithJourneys) {
           citiesWithJourneys.push({city: city, journeys: [voyage]});
-        } else {
+        } else if (cityWithJourneys.journeys.indexOf(voyage) === -1) {
           cityWithJourneys.journeys.push(voyage);
         }
       });
@@ -32,7 +32,7 @@
         tooltipContent += '<ul class="tooltip-list"><li>' + tooltipJourneys.join('</li><li>') + '</li></ul>';
       
         var feature = new ol.Feature({
-          geometry: new ol.geom.Circle(coordonnees, 50000),
+          geometry: new ol.geom.Circle(coordonnees, 5000),
           tooltip: tooltipContent
         });
         source.addFeature(feature);
