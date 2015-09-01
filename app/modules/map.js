@@ -19,9 +19,14 @@
     // journeys
     $scope.journeyIndex = -1;
     $scope.journeys = Voyages.get();
+    
+    $scope.setJourney = function (index) {
+      $scope.journeyIndex = index === -1 ? -1 : $scope.journeys.length - index - 1;
+      refreshLayers();
+    };
 
     // background
-    $scope.backgroundMaps = BackgroundMaps.get($scope.journeys);
+    $scope.backgroundMaps = BackgroundMaps.get();
     $scope.backgroundIndex = 0;
 
     map.addLayer($scope.backgroundMaps[0].layer);
@@ -42,8 +47,9 @@
     function refreshLayers () {
       $scope.masks.forEach(function (mask) {
         map.removeLayer(mask.layer);
+        var journeys = $scope.journeyIndex === -1 ? Voyages.get() : [Voyages.get()[$scope.journeyIndex]];
         var overlayColor = $scope.backgroundMaps[$scope.backgroundIndex].overlayColor;
-        mask.layer = mask.layerManager.get(overlayColor);
+        mask.layer = mask.layerManager.get(journeys, overlayColor);
         if (mask.show) {
           map.addLayer(mask.layer);
         }

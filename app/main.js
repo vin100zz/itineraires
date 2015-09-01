@@ -21,3 +21,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('MainCtrl', function ($scope) {
 
 });
+
+// filter
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});

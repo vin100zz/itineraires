@@ -1,11 +1,11 @@
-﻿app.service('JourneysLayer', function (Voyages, Coordonnees) {
+﻿app.service('JourneysLayer', function (Coordonnees) {
 
-  this.get = function (overlayColor) {
+  this.get = function (journeys, overlayColor) {
   
     // compute journeys
-    var journeys = [];
+    var journeysWithPoints = [];
     
-    Voyages.get().forEach(function (journey, index) {
+    journeys.forEach(function (journey) {
       var points = [];
       journey.villes.forEach(function (city) {
         var point = Coordonnees.get(city);
@@ -13,13 +13,13 @@
           points.push(point);
         }
       });
-      journeys.push({name: journey.nom, points: points});
+      journeysWithPoints.push({name: journey.nom, points: points});
     });
     
     // compute layer
     var source = new ol.source.Vector({});
     
-    journeys.forEach(function (journey) {
+    journeysWithPoints.forEach(function (journey) {
       var feature = new ol.Feature({
         geometry: new ol.geom.LineString(journey.points),
         journeyName: journey.name

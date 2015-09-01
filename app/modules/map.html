@@ -2,7 +2,7 @@
   <div id="tooltip" data-html="true"></div>
 </div>
 
-<div id="menu">
+<div class="menu">
   <div class="title">
     Itinéraires
   </div>
@@ -10,24 +10,28 @@
   <div class="menu-item sel-radio background">
     <div>Fond de carte</div>
     <ul>
-      <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)"><span>{{map.name}}</span></li>
+      <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)">
+        <span>{{map.name}}</span>
+      </li>
     </ul>
   </div>
 
   <div class="menu-item sel-check masks">
     <div>Informations</div>
     <ul>
-      <li ng-repeat="mask in masks"  ng-class="{inactive: !mask.show}" ng-click="toggleMask($index)">{{mask.name}}</li>
+      <li ng-repeat="mask in masks" ng-class="{inactive: !mask.show}" ng-click="toggleMask($index)">
+        <span>{{mask.name}}</span>
+      </li>
     </ul>
   </div>
   
   <div class="menu-item sel-radio voyages">
     <div>Voyages</div>
     <ul>
-      <li ng-click="setJourney(-1)">Tous</li>
-      <li ng-repeat="journey in journeys" ng-click="setJourney($index)">
-        <span>{{Month.getLabel(journey.mois)}} {{journey.annee}}</span>
+      <li ng-class="{inactive: journeyIndex !== -1}" ng-click="setJourney(-1)">Tous</li>
+      <li ng-repeat="journey in journeys | reverse" ng-class="{inactive: journeyIndex !== $index}" ng-click="setJourney($index)">
         <span>{{journey.nom}}</span>
+        <span class="date">[{{Month.getLabel(journey.mois)}} {{journey.annee}}]</span>
       </li>
     </ul>
   </div>

@@ -1,6 +1,6 @@
-﻿app.service('BackgroundMaps', function() {
+﻿app.service('BackgroundMaps', function (Voyages) {
 
-  this.get = function (voyages) {
+  this.get = function () {
   
     var maps = [];
     
@@ -17,7 +17,7 @@
         initialized = true; // avoid infinite loops
         var visitedCountries = [];
         
-        voyages.forEach(function (voyage) {
+        Voyages.get().forEach(function (voyage) {
           voyage.pays.forEach(function (pays) {
             if (visitedCountries.indexOf(pays) === -1) {
               visitedCountries.push(pays);

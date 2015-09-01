@@ -1,11 +1,11 @@
-﻿app.service('CitiesLayer', function (Voyages, Coordonnees, Month) {
+﻿app.service('CitiesLayer', function (Coordonnees, Month) {
 
-  this.get = function (overlayColor) {
+  this.get = function (journeys, overlayColor) {
   
     // compute cities
     var citiesWithJourneys = [];
     
-    Voyages.get().forEach(function (voyage, index) {
+    journeys.forEach(function (voyage, index) {
       voyage.villes.forEach(function (city) {
         var cityWithJourneys = citiesWithJourneys.find(function (cityWithJourneys) {
           return cityWithJourneys.city === city;
@@ -25,11 +25,11 @@
       var coordonnees = Coordonnees.get(cityWithJourneys.city);
       if (coordonnees) {
       
-        var tooltipContent = '<h1>' + cityWithJourneys.city + '</h1>';
+        var tooltipContent = '<div class="tooltip-title">' + cityWithJourneys.city + '</div>';
         var tooltipJourneys = cityWithJourneys.journeys.map(function (journey) {
           return Month.getLabel(journey.mois) + ' ' + journey.annee;
         });
-        tooltipContent += '<ul><li>' + tooltipJourneys.join('</li><li>') + '</li></ul>';
+        tooltipContent += '<ul class="tooltip-list"><li>' + tooltipJourneys.join('</li><li>') + '</li></ul>';
       
         var feature = new ol.Feature({
           geometry: new ol.geom.Circle(coordonnees, 50000),

@@ -6,6 +6,7 @@ html {
   font-size: 10pt;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 body {
   width: 100%;
@@ -24,7 +25,16 @@ body {
   height: 1px;
   width: 1px;
   z-index: 100;
-} 
+}
+.tooltip-title {
+  margin: 2px 5px 0 5px;
+  color: #cfb497;
+  font-weight: bold;
+}
+.tooltip-list {
+  margin: 0 5px 2px 5px;
+  font-size: 8pt;
+}
 
 /* Zoom */
 .ol-zoom {
@@ -34,17 +44,24 @@ body {
 }
 
 /* Menu */
-#menu {
+.menu {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  background: rgba(60, 60, 60, 0.9);
+  width: 210px;
+  background: #333;
   font-size: 9pt;
   color: #ccc;
+  opacity: 0.25;
+  transition: opacity 0.1s ease;
 }
-#menu  > div {
-  padding: 10px 20px;
+.menu:hover{
+  opacity: 0.9;
+}
+
+.menu  > div {
+  padding: 10px 0 10px 20px;
 }
 
 .menu-item > div {
@@ -58,11 +75,11 @@ body {
 .menu-item > ul > li {
   cursor: pointer;
 }
-.menu-item > ul > li:hover {
-  color: #fff;
-}
 .menu-item > ul > li.inactive {
   color: #999;
+}
+.menu-item > ul > li:hover {
+  color: #fff;
 }
 .menu-item > ul > li:before {
   margin-right: 7px;
@@ -91,15 +108,37 @@ body {
   content: url(icon.png);
   position: absolute;
   top: -2px;
-  right: 15px;
+  left: 170px;
 }
 
-/* Background */
-.background > ul > li:before {
-  content: '\25A0';
+/* Voyages */
+.voyages {
+  height: calc(100% - 260px);
+}
+.voyages .date {
+  font-size: 0.75em;
+}
+.voyages ul {
+  overflow-y: auto;
+  height: 100%;
 }
 
-/* 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #333;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+::-webkit-scrollbar-thumb {
+  background: #cfb497;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #999; 
+}
 
 
 
