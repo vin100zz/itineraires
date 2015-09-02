@@ -32,7 +32,7 @@
         tooltipContent += '<ul class="tooltip-list"><li>' + tooltipJourneys.join('</li><li>') + '</li></ul>';
       
         var feature = new ol.Feature({
-          geometry: new ol.geom.Circle(coordonnees, 5000),
+          geometry: new ol.geom.Circle(coordonnees, 50000),
           tooltip: tooltipContent
         });
         source.addFeature(feature);

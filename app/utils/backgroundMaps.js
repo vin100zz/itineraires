@@ -3,6 +3,17 @@
   this.get = function () {
   
     var maps = [];
+        
+    // aquarelle
+    maps.push({
+      name: 'Aquarelle',
+      overlayColor: '#f00',
+      layer: new ol.layer.Tile({
+        source: new ol.source.Stamen({
+          layer: 'watercolor'
+        })
+      }),
+    });
     
     // visited countries
     var countriesSource = new ol.source.Vector({

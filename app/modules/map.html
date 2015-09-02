@@ -8,7 +8,7 @@
   </div>
   
   <div class="menu-item sel-radio background">
-    <div>Fond de carte</div>
+    <div>Fond</div>
     <ul>
       <li ng-repeat="map in backgroundMaps" ng-class="{inactive: backgroundIndex !== $index}" ng-click="setBackgroundMap($index)">
         <span>{{map.name}}</span>
@@ -32,6 +32,7 @@
       <li ng-repeat="journey in journeys | reverse" ng-class="{inactive: journeys.length-journeyIndex-1 !== $index}" ng-click="setJourney($index)">
         <span>{{journey.nom}}</span>
         <span class="date">[{{Month.getLabel(journey.mois)}} {{journey.annee}}]</span>
+        <a ng-if="journey.link" href="{{journey.link}}" target="_blank"><span class="fa fa-external-link-square"></span></a>
       </li>
     </ul>
   </div>

@@ -262,7 +262,7 @@
     "nom": "Transsibérien",
     "mois": 8,
     "annee": 2008,
-    "villes": ["Moscou", "Omsk", "Irkoutsk", "Harbin", "Vladivostok", "Khabarovsk", "Riga"],
+    "villes": ["Riga", "Moscou", "Omsk", "Irkoutsk", "Harbin", "Vladivostok", "Khabarovsk"],
     "pays": ["Russia", "China", "Latvia"]
   },
   {
@@ -291,21 +291,23 @@
     "nom": "Chine",
     "mois": 4,
     "annee": 2009,
-    "villes": ["Pekin", "Shanghai"],
-    "pays": ["China"]
+    "villes": ["Pekin", "Xian", "Luoyang", "Nanjin", "Suzhou", "Shanghai"],
+    "pays": ["China"],
+    "link": "../r1/chine"
   },
   {
     "nom": "Danube",
     "mois": 6,
     "annee": 2009,
     "villes": ["Salzbourg", "Vienne", "Bratislava", "Budapest"],
-    "pays": ["Austria", "Slovakia", "Hungary"]
+    "pays": ["Austria", "Slovakia", "Hungary"],
+    "link": "../r1/autriche"
   },
   {
     "nom": "Bavière",
     "mois": 9,
     "annee": 2009,
-    "villes": ["Munich"],
+    "villes": ["Munich", "Stuttgart", "Nuremberg", "Munich"],
     "pays": ["Germany"]
   },
   {
@@ -348,7 +350,7 @@
     "nom": "Vallée du Rhin",
     "mois": 9,
     "annee": 2010,
-    "villes": ["Cologne", "Francfort", "Rothenburg"],
+    "villes": ["Cologne", "Francfort", "Rothenburg", "Heidelberg"],
     "pays": ["Germany"]
   },
   {
@@ -356,14 +358,16 @@
     "mois": 10,
     "annee": 2010,
     "villes": ["Milan"],
-    "pays": ["Italy"]
+    "pays": ["Italy"],
+    "link": "../r1/Milano"
   },
   {
     "nom": "Séville",
     "mois": 12,
     "annee": 2010,
-    "villes": ["Séville"],
-    "pays": ["Spain"]
+    "villes": ["Séville", "Gibraltar"],
+    "pays": ["Spain"],
+    "link": "../r1/seville"
   },
   
   {
@@ -371,13 +375,14 @@
     "mois": 3,
     "annee": 2011,
     "villes": ["Berlin", "Osterode", "Dresde"],
-    "pays": ["Germany"]
+    "pays": ["Germany"],
+    "link": "../r1/berlin"
   },
   {
     "nom": "Biélorussie",
     "mois": 8,
     "annee": 2011,
-    "villes": ["Brest-Litovsk", "Minsk", "Smolensk", "Moscou", "Volgograd", "St Petersbourg"],
+    "villes": ["Brest-Litovsk", "Minsk", "Smolensk", "Moscou", "Volgograd", "Moscou", "St Petersbourg"],
     "pays": ["Belarus", "Russia"]
   },
   {
@@ -385,14 +390,16 @@
     "mois": 9,
     "annee": 2011,
     "villes": ["Salzbourg", "Vienne"],
-    "pays": ["Austria"]
+    "pays": ["Austria"],
+    "link": "../r1/austria"
   },
   {
     "nom": "Pays-Bas",
     "mois": 10,
     "annee": 2011,
-    "villes": ["Amsterdam"],
-    "pays": ["Netherlands"]
+    "villes": ["Amsterdam", "Digue du Nord", "Apeldoorn", "La Haye", "Amsterdam"],
+    "pays": ["Netherlands"],
+    "link": "../r1/pb"
   },
   
   {
@@ -413,23 +420,26 @@
     "nom": "Ouzbekistan",
     "mois": 10,
     "annee": 2012,
-    "villes": ["Tashkent"],
-    "pays": ["Uzbekistan"]
+    "villes": ["Tachkent", "Khiva", "Boukhara", "Samarcande", "Tachkent"],
+    "pays": ["Uzbekistan"],
+    "link": "../r1/ouzbek"
   },
   
   {
     "nom": "Floride",
     "mois": 4,
     "annee": 2013,
-    "villes": ["Miami", "Orlando", "New Orleans", "Atlanta"],
-    "pays": ["United States of America"]
+    "villes": ["Key West", "Miami", "Orlando", "New Orleans", "Atlanta"],
+    "pays": ["United States of America"],
+    "link": "../r1/FloLou"
   },
   {
     "nom": "Osterode-Berlin",
     "mois": 6,
     "annee": 2013,
-    "villes": ["Osterode", "Berlin", "Hambourg"],
-    "pays": ["Germany"]
+    "villes": ["Francfort", "Osterode", "Berlin", "Hambourg"],
+    "pays": ["Germany"],
+    "link": "../r1/all2013"
   },
   {
     "nom": "Balkans",
@@ -442,8 +452,9 @@
     "nom": "Équateur",
     "mois": 9,
     "annee": 2013,
-    "villes": ["Quito"],
-    "pays": ["Ecuador"]
+    "villes": ["Quito", "Puyo", "Cuenca", "Guayaquil", "Quito"],
+    "pays": ["Ecuador"],
+    "link": "../r1/amazone"
   },
   {
     "nom": "Lac Majeur",
@@ -458,42 +469,64 @@
     "mois": 1,
     "annee": 2014,
     "villes": ["Edimbourg", "Aberdeen", "Inverness", "Edimbourg", "Glasgow"],
-    "pays": ["United Kingdom"]
+    "pays": ["United Kingdom"],
+    "link": "../r1/scotland"
   },
   {
     "nom": "Genève",
     "mois": 3,
     "annee": 2014,
-    "villes": ["Genève"],
-    "pays": ["Switzerland"]
+    "villes": ["Genève", "Neuchâtel"],
+    "pays": ["Switzerland"],
+    "link": "../2014"
   },
   {
     "nom": "Leipzig",
     "mois": 4,
     "annee": 2014,
-    "villes": ["Leipzig"],
-    "pays": ["Germany"]
+    "villes": ["Francfort", "Leipzig", "Dresde", "Mlada Boleslav", "Karlovy Vary", "Wurtzbourg", "Francfort"],
+    "pays": ["Germany", "Czech Republic"],
+    "link": "../r1/bach"
   },
   {
     "nom": "Cyclades",
     "mois": 5,
     "annee": 2014,
     "villes": ["Cyclades"],
-    "pays": ["Greece"]
+    "pays": ["Greece"],
+    "link": "../r1/cyclades"
   },
   {
     "nom": "Canada",
     "mois": 10,
     "annee": 2014,
     "villes": ["Toronto", "Ottawa", "Montreal", "Québec"],
-    "pays": ["Canada"]
+    "pays": ["Canada"],
+    "link": "../r1/canada"
   },
   
+  {
+    "nom": "Turin",
+    "mois": 4,
+    "annee": 2015,
+    "villes": ["Turin"],
+    "pays": ["Italy"],
+    "link": "../2015/turin"
+  },
+  {
+    "nom": "Tchéquie",
+    "mois": 6,
+    "annee": 2015,
+    "villes": ["Prague", "Leipzig", "Wroclaw", "Cracovie", "Brno", "Cesky Krumlov", "Prague"],
+    "pays": ["Germany", "Poland", "Czech Republic"],
+    "link": "../r1/tatra"
+  },  
   {
     "nom": "Roumol",
     "mois": 7,
     "annee": 2015,
     "villes": ["Szeged", "Sibiu", "Brasov", "Chisinau", "Braila", "Bucarest", "Costanta"],
-    "pays": ["Hungary", "Romania", "Moldova"]
+    "pays": ["Hungary", "Romania", "Moldova"],
+    "link": "../r1/roumol"
   }
 ]

@@ -57,11 +57,11 @@ body {
   transition: opacity 0.1s ease;
 }
 .menu:hover{
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .menu  > div {
-  padding: 10px 0 10px 20px;
+  padding: 10px 0 10px 15px;
 }
 
 .menu-item > div {
@@ -121,6 +121,14 @@ body {
 .voyages ul {
   overflow-y: auto;
   height: 100%;
+}
+.voyages .fa {
+  margin-left: 5px;
+  color: #cfb497;
+  opacity: 0.75;
+}
+.voyages .fa:hover {
+  opacity: 1;
 }
 
 /* Scrollbar */
