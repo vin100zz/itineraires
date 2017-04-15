@@ -266,7 +266,7 @@
     "nom": "Chine",
     "mois": 4,
     "annee": 2009,
-    "villes": ["Pekin", "Xian", "Luoyang", "Nanjin", "Suzhou", "Shanghai"],
+    "villes": ["Pekin", "Xian", "Luoyang", "Nankin", "Suzhou", "Shanghai"],
     "pays": ["China"],
     "link": "../r1/chine"
   }, {
@@ -493,5 +493,26 @@
     "villes": ["Berlin", "Hambourg", "Prora", "Szczecin", "Berlin"],
     "pays": ["Germany", "Poland"],
     "link": "../r1/ost"
+  }, {
+    "nom": "Bali, Célèbes",
+    "mois": 9,
+    "annee": 2016,
+    "villes": ["Denpasar", "Makassar"],
+    "pays": ["Indonesia"],
+    "link": "../r1/bali"
+  }, {
+    "nom": "Ouest américain",
+    "mois": 10,
+    "annee": 2016,
+    "villes": ["San Francisco", "Los Angeles", "Las Vegas", "Page", "New York"],
+    "pays": ["United States of America"]
+  },
+
+  {
+    "nom": "Chine",
+    "mois": 4,
+    "annee": 2017,
+    "villes": ["Pekin", "Shanghai", "Hong Kong", "Macao"],
+    "pays": ["China"]
   }
 ]
