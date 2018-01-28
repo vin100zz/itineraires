@@ -508,12 +508,32 @@
     "pays": ["United States of America"]
 
   },
-
   {
     "nom": "Chine",
     "mois": 4,
     "annee": 2017,
     "villes": ["Pekin", "Shanghai", "Hong Kong", "Macao"],
     "pays": ["China"]
+  },
+  {
+    "nom": "Singapour",
+    "mois": 5,
+    "annee": 2017,
+    "villes": ["Singapour"],
+    "pays": ["Singapore"]
+  },
+  {
+    "nom": "Chicago & Texas",
+    "mois": 10,
+    "annee": 2017,
+    "villes": ["Chicago", "Detroit", "Dallas", "Austin", "San Antonio", "Houston"],
+    "pays": ["United States of America"]
+  },
+  {
+    "nom": "Pays Basque",
+    "mois": 12,
+    "annee": 2017,
+    "villes": ["San Sebastian", "Bilbao"],
+    "pays": ["Spain"]
   }
 ]

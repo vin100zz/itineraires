@@ -50,7 +50,7 @@
         layer: new ol.layer.Vector({
           source: countriesSource,
           style: function (feature, resolution) {
-            var fillColor = (feature.get('name') === 'France' ? '#ddd' : (feature.get('visited') ? '#D4FFC1' : '#f3f3f3'));
+            var fillColor = (feature.get('name') === 'France' ? '#4285F4' : (feature.get('visited') ? '#E8827A' : '#FFDA96'));
             return [new ol.style.Style({
               fill: new ol.style.Fill({color: fillColor}),
               stroke: new ol.style.Stroke({color: '#ccc', width: 1}),
@@ -61,13 +61,13 @@
     );
     
     // satellite
-    maps.push({
+    /*maps.push({
       name: 'Satellite',
       overlayColor: '#FFD800',
       layer: new ol.layer.Tile({
-        source: new ol.source.MapQuest({layer: 'sat'})
+        source:  new ol.source.OSM()
       })
-    });
+    });*/
 
     // geopolitical
     maps.push({
