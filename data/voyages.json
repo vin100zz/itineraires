@@ -505,35 +505,47 @@
     "mois": 10,
     "annee": 2016,
     "villes": ["San Francisco", "Los Angeles", "Las Vegas", "Page", "New York"],
-    "pays": ["United States of America"]
-
+    "pays": ["United States of America"],
+    "link": "../r1/cali"
   },
   {
     "nom": "Chine",
     "mois": 4,
     "annee": 2017,
     "villes": ["Pekin", "Shanghai", "Hong Kong", "Macao"],
-    "pays": ["China"]
+    "pays": ["China"],
+    "link": "../r1/pekshahongmac"
   },
   {
     "nom": "Singapour",
     "mois": 5,
     "annee": 2017,
     "villes": ["Singapour"],
-    "pays": ["Singapore"]
+    "pays": ["Singapore"],
+    "link": "../ve/singapour"
   },
   {
     "nom": "Chicago & Texas",
     "mois": 10,
     "annee": 2017,
     "villes": ["Chicago", "Detroit", "Dallas", "Austin", "San Antonio", "Houston"],
-    "pays": ["United States of America"]
+    "pays": ["United States of America"],
+    "link": "../r1/chicatex"
   },
   {
     "nom": "Pays Basque",
     "mois": 12,
     "annee": 2017,
     "villes": ["San Sebastian", "Bilbao"],
-    "pays": ["Spain"]
+    "pays": ["Spain"],
+    "link": "../r1/basque"
+  },
+  {
+    "nom": "Singapour, Bangkok",
+    "mois": 2,
+    "annee": 2018,
+    "villes": ["Singapour", "Bangkok"],
+    "pays": ["Singapore", "Thailand"],
+    "link": "../ve/singapour2"
   }
 ]
