@@ -8,57 +8,60 @@
     maps.push({
       name: 'Aquarelle',
       overlayColor: '#f00',
-      layer: new ol.layer.Tile({
+      all: new ol.layer.Tile({
         source: new ol.source.Stamen({
           layer: 'watercolor'
         })
-      }),
+      })
     });
     
     // visited countries
     var countriesSource = new ol.source.Vector({
-      url: 'data/countries.geojson',
+      url: 'data/countries.geojson?ts=' + Date.now(),
       format: new ol.format.GeoJSON()
     });
-    
+
+    var visitedCountriesMap = {
+      name: 'Pays visités',
+      overlayColor: '#FF0000',
+      PM: getVisitedCountriesLayer('PM'),
+      V: getVisitedCountriesLayer('V')
+    };
+
+
+
     var initialized = false;
-    
     countriesSource.on('change', function (event) {
       if (!initialized && event.target.getState() === 'ready') {
         initialized = true; // avoid infinite loops
-        var visitedCountries = [];
-        
-        Voyages.get().forEach(function (voyage) {
-          voyage.pays.forEach(function (pays) {
-            if (visitedCountries.indexOf(pays) === -1) {
-              visitedCountries.push(pays);
-            }
-          });
-        });
-        
-        countriesSource.forEachFeature(function (feature) {
-          if (visitedCountries.indexOf(feature.get('name')) !== -1) {
-            feature.set('visited', true);
-          }
-        }); 
+        visitedCountriesMap.V = getVisitedCountriesLayer('V');
+        visitedCountriesMap.PM = getVisitedCountriesLayer('PM');
       }    
     });
-    
-    maps.push({
-        name: 'Pays visités',
-        overlayColor: '#FF0000',
-        layer: new ol.layer.Vector({
-          source: countriesSource,
-          style: function (feature, resolution) {
-            var fillColor = (feature.get('name') === 'France' ? '#4285F4' : (feature.get('visited') ? '#E8827A' : '#FFDA96'));
-            return [new ol.style.Style({
-              fill: new ol.style.Fill({color: fillColor}),
-              stroke: new ol.style.Stroke({color: '#ccc', width: 1}),
-            })];
+
+    function getVisitedCountriesLayer (traveller) {
+      var visitedCountries = [];        
+      Voyages.getWithFilters(-1, traveller).forEach(function (voyage) {
+        voyage.pays.forEach(function (pays) {
+          if (!visitedCountries.includes(pays)) {
+            visitedCountries.push(pays);
           }
-        })
-      }
-    );
+        });
+      });      
+
+      return new ol.layer.Vector({
+        source: countriesSource,
+        style: function (feature, resolution) {
+          var fillColor = (feature.get('name') === 'France' ? '#4285F4' : (visitedCountries.includes(feature.get('name')) ? '#E8827A' : '#FFDA96'));
+          return [new ol.style.Style({
+            fill: new ol.style.Fill({color: fillColor}),
+            stroke: new ol.style.Stroke({color: '#ccc', width: 1}),
+          })];
+        }
+      });
+    }
+    
+    maps.push(visitedCountriesMap);
     
     // satellite
     /*maps.push({
@@ -73,7 +76,7 @@
     maps.push({
       name: 'Géopolitique',
       overlayColor: '#333',
-      layer: new ol.layer.Tile({
+      all: new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
           crossOrigin: ''

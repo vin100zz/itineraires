@@ -24,6 +24,15 @@
       </li>
     </ul>
   </div>
+
+  <div class="menu-item sel-radio travellers">
+    <div>Qui ?</div>
+    <ul>
+      <li ng-repeat="traveller in travellers" ng-class="{inactive: travellerIndex !== $index}" ng-click="setTraveller($index)">
+        <span>{{traveller}}</span>
+      </li>
+    </ul>
+  </div>
   
   <div class="menu-item sel-radio voyages">
     <div>Voyages</div>
