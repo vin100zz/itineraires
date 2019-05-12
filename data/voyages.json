@@ -196,7 +196,6 @@
     "pays": ["Belgium"],
     "voyageurs": ["PM", "V"]
   },
-
   {
     "nom": "Sicile",
     "mois": 2,
@@ -204,7 +203,16 @@
     "villes": ["Syracuse"],
     "pays": ["Italy"],
     "voyageurs": ["PM", "V"]
-  }, {
+  },
+  {
+    "nom": "Dublin",
+    "mois": 5,
+    "annee": 2006,
+    "villes": ["Dublin"],
+    "pays": ["Ireland"],
+    "voyageurs": ["V"]
+  },
+  {
     "nom": "Moscou",
     "mois": 8,
     "annee": 2007,
@@ -263,7 +271,6 @@
     "pays": ["Italy"],
     "voyageurs": ["PM"]
   },
-
   {
     "nom": "Canaries",
     "mois": 2,
@@ -675,5 +682,57 @@
     "pays": ["Iran"],
     "voyageurs": ["PM"],
     "link": "../r1/iran"
+  },
+  {
+    "nom": "Lituanie, Lettonie",
+    "mois": 9,
+    "annee": 2018,
+    "villes": ["Kaunas", "Klaipeda", "Riga", "Vilnius"],
+    "pays": ["Lithuania", "Latvia"],
+    "voyageurs": ["PM"],
+    "link": "../r1/litu"
+  },
+  {
+    "nom": "Vienne",
+    "mois": 11,
+    "annee": 2018,
+    "villes": ["Vienne"],
+    "pays": ["Austria"],
+    "voyageurs": ["PM"],
+    "link": "../r1/vienne"
+  },
+  {
+    "nom": "Rome",
+    "mois": 12,
+    "annee": 2018,
+    "villes": ["Rome"],
+    "pays": ["Italy"],
+    "voyageurs": ["V"]
+  },
+  {
+    "nom": "Bruxelles",
+    "mois": 4,
+    "annee": 2019,
+    "villes": ["Bruxelles", "Bruges"],
+    "pays": ["Belgium"],
+    "voyageurs": ["V"],
+    "link": "../2019/#/chapitre/5/0"
+  },
+  {
+    "nom": "Madrid",
+    "mois": 4,
+    "annee": 2019,
+    "villes": ["Madrid", "Salamanque", "Tolède"],
+    "pays": ["Spain"],
+    "voyageurs": ["PM"],
+    "link": "../r1/espagne"
+  },
+  {
+    "nom": "Dubai, Bangkok",
+    "mois": 5,
+    "annee": 2019,
+    "villes": ["Dubai", "Abu Dhabi", "Dubai", "Bangkok"],
+    "pays": ["United Arab Emirates", "Thailand"],
+    "voyageurs": ["V"]
   }
 ]
