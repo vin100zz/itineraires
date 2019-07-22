@@ -734,5 +734,13 @@
     "villes": ["Dubai", "Abu Dhabi", "Dubai", "Bangkok"],
     "pays": ["United Arab Emirates", "Thailand"],
     "voyageurs": ["V"]
+  },
+  {
+    "nom": "Guadeloupe",
+    "mois": 5,
+    "annee": 2019,
+    "villes": ["Pointe-à-Pitre"],
+    "pays": ["Guadeloupe"],
+    "voyageurs": ["V"]
   }
 ]
