@@ -742,5 +742,29 @@
     "villes": ["Pointe-à-Pitre"],
     "pays": ["Guadeloupe"],
     "voyageurs": ["V"]
+  },
+  {
+    "nom": "Irlande",
+    "mois": 6,
+    "annee": 2019,
+    "villes": ["Dublin", "Belfast", "Connemara", "Kerry", "Dublin"],
+    "pays": ["Ireland"],
+    "voyageurs": ["PM"]
+  },
+  {
+    "nom": "Pays Basque",
+    "mois": 8,
+    "annee": 2019,
+    "villes": ["San Sebastian"],
+    "pays": ["Guadeloupe"],
+    "voyageurs": ["V"]
+  },
+  {
+    "nom": "Petite Pologne",
+    "mois": 9,
+    "annee": 2019,
+    "villes": ["Cracovie", "Przemysl"],
+    "pays": ["Poland", "Slovakia"],
+    "voyageurs": ["PM"]
   }
 ]
