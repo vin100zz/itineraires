@@ -26,13 +26,14 @@
 
     $scope.setTraveller = function (index) {
       $scope.travellerIndex = index;
+      $scope.journeys = getFilteredVoyages();
       refreshLayers();
       $scope.setBackgroundMap($scope.backgroundIndex);
     };
 
     // journeys
     $scope.journeyIndex = -1;
-    $scope.journeys = Voyages.get();
+    $scope.journeys = getFilteredVoyages();
     
     $scope.setJourney = function (index) {
       $scope.journeyIndex = index === -1 ? -1 : $scope.journeys.length-index-1;

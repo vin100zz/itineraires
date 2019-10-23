@@ -6,6 +6,15 @@
   <div class="title">
     Itinéraires
   </div>
+
+  <div class="menu-item sel-radio travellers">
+    <div>Qui ?</div>
+    <ul>
+      <li ng-repeat="traveller in travellers" ng-class="{inactive: travellerIndex !== $index}" ng-click="setTraveller($index)">
+        <span>{{traveller}}</span>
+      </li>
+    </ul>
+  </div>
   
   <div class="menu-item sel-radio background">
     <div>Fond</div>
@@ -21,15 +30,6 @@
     <ul>
       <li ng-repeat="mask in masks" ng-class="{inactive: !mask.show}" ng-click="toggleMask($index)">
         <span>{{mask.name}}</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="menu-item sel-radio travellers">
-    <div>Qui ?</div>
-    <ul>
-      <li ng-repeat="traveller in travellers" ng-class="{inactive: travellerIndex !== $index}" ng-click="setTraveller($index)">
-        <span>{{traveller}}</span>
       </li>
     </ul>
   </div>
