@@ -766,5 +766,13 @@
     "villes": ["Cracovie", "Przemysl"],
     "pays": ["Poland", "Slovakia"],
     "voyageurs": ["PM"]
+  },
+  {
+    "nom": "Myanmar",
+    "mois": 9,
+    "annee": 2019,
+    "villes": ["Yangon", "Kyaiktiyo", "Yangon", "Bagan", "Mandalay", "Inle Lake", "Yangon"],
+    "pays": ["Myanmar"],
+    "voyageurs": ["V"]
   }
 ]
