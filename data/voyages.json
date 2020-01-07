@@ -296,12 +296,10 @@
     "nom": "Jordanie",
     "mois": 10,
     "annee": 2008,
-    "villes": ["Amman"],
+    "villes": ["Amman", "Aqaba"],
     "pays": ["Jordan"],
     "voyageurs": ["PM"]
-  },
-
-  {
+  }, {
     "nom": "Cinque Terre",
     "mois": 2,
     "annee": 2009,
